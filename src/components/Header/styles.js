@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
-  background: rgba(0, 0, 0, 0.25);
+  background: #10bed8;
   padding: 0 30px;
 `;
 
@@ -19,6 +19,7 @@ export const Content = styled.div`
     img {
       margin-right: 20px;
       padding-right: 20px;
+      width: 120px;
     }
     a {
       font-weight: bold;
@@ -48,22 +49,22 @@ export const Profile = styled.div`
       display: block;
       margin-top: 10px;
       font-size: 12px;
-      color: #999;
+      color: #ffffff;
     }
   }
   button {
     margin-left: 10px;
     height: 42px;
     width: 71px;
-    background: #f94d6a;
+    background: #fff;
     font-weight: bold;
-    color: #fff;
+    color: #10bed8;
     border: 0;
     border-radius: 4px;
     font-size: 16px;
     transition: background 0.2s;
     &:hover {
-      background: ${darken(0.03, '#c00040')};
+      background: ${darken(0.03, '#10bed8')};
     }
   }
 `;

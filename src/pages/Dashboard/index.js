@@ -1,47 +1,55 @@
-import React from 'react';
-// import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { MdAddCircleOutline } from 'react-icons/md';
+import { MdAddCircleOutline, MdEdit } from 'react-icons/md';
+import { Container, Topics } from './styles';
+import { SelectTopic } from '~/store/modules/topic/action';
 
-import { Container } from './styles';
-// import api from '~/services/api';
+import api from '~/services/api';
 
 export default function Dashboard() {
-  // const dispatch = useDispatch();
-  // const [meetups, setMeetups] = useState([]);
-  // const [date, setDate] = useState();
+  const dispatch = useDispatch();
+  const [topics, setTopics] = useState([]);
 
-  // useEffect(() => {
-  //   setDate(format(new Date(), 'MM/dd/yyyy'));
+  useEffect(() => {
+    async function loadTopics() {
+      const response = await api.get('topic');
 
-  //   async function loadMeetupps() {
-  //     const response = await api.get('organizing', { params: { date } });
-  //     const data = response.data.map(m => ({
-  //       ...m,
-  //       formattedDate: format(parseISO(m.date), "d 'de' MMMM', às' hh'h'mm", {
-  //         locale: pt,
-  //       }),
-  //     }));
-  //     setMeetups(data);
-  //   }
-  //   loadMeetupps();
-  // }, [date]);
+      setTopics(response.data);
+    }
+    loadTopics();
+  });
 
-  // function handleSelectMeetup(meetup) {
-  //   dispatch(SelectMeetup(meetup));
-  // }
+  function handleSelectTopic(topic) {
+    console.log(topic);
+    dispatch(SelectTopic(topic));
+  }
 
   return (
     <Container>
       <header>
-        <strong>Meus Meetups</strong>
+        <strong>Tópicos</strong>
         <Link to="/new">
           <button type="button">
             <MdAddCircleOutline size={24} />
-            <span>Novo Meetup</span>
+            <span>Novo Tópico</span>
           </button>
         </Link>
       </header>
+      <ul>
+        {topics.map(topic => (
+          <Topics>
+            <div>
+              <strong>{topic.name}</strong>
+            </div>
+            <div>
+              <Link to="/edit" onClick={() => handleSelectTopic(topic)}>
+                <MdEdit size={36} color="#10bed8" />
+              </Link>
+            </div>
+          </Topics>
+        ))}
+      </ul>
     </Container>
   );
 }

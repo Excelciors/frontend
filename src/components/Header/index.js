@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signOut } from '~/store/modules/auth/actions';
 
-import logo from '~/assets/logo.svg';
+import logo from '~/assets/logo.png';
 
 import { Container, Content, Profile } from './styles';
 

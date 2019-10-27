@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import logo from '~/assets/logo.svg';
+import logo from '~/assets/logo.png';
 
 import { signUpRequest } from '~/store/modules/auth/actions';
 
@@ -21,17 +21,18 @@ const schema = Yup.object().shape({
 export default function SignUp() {
   const dispatch = useDispatch();
 
-  function handleSubmit({ name, email, password }) {
-    dispatch(signUpRequest(name, email, password));
+  function handleSubmit({ name, email, birthday, password }) {
+    dispatch(signUpRequest(name, email, birthday, password));
   }
 
   return (
     <>
-      <img src={logo} alt="GoBarber" />
+      <img src={logo} alt="Descubra+" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
         <Input name="name" placeholder="Nome completo" />
         <Input name="email" type="email" placeholder="Seu e-mail" />
+        <Input name="birthday" placeholder="Data de Nascimento" />
         <Input
           name="password"
           type="password"

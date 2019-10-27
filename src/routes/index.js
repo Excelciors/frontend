@@ -5,6 +5,8 @@ import Route from './Route';
 import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
 import Dashboard from '~/pages/Dashboard';
+import NewTopic from '~/pages/NewTopic';
+import EditTopic from '~/pages/EditTopic';
 import Profile from '~/pages/Profile';
 
 export default function Routes() {
@@ -14,6 +16,9 @@ export default function Routes() {
       <Route path="/register" component={SignUp} />
 
       <Route path="/dashboard" component={Dashboard} isPrivate />
+      <Route path="/new" component={NewTopic} isPrivate />
+      <Route path="/edit" component={EditTopic} isPrivate />
+
       <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   );
